@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd 
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+        http://www.springframework.org/schema/util     
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+<tx:annotation-driven/>
+	<context:annotation-config></context:annotation-config>
+	<mvc:annotation-driven ></mvc:annotation-driven>
+	<context:component-scan base-package="com.virtusa"/>
+	<context:component-scan base-package="com.virtusa.controller"/>
+		<context:component-scan base-package="com.virtusa.dao"/>
+		<context:component-scan base-package="com.virtusa.model"/>
+		<context:component-scan base-package="com.virtusa.service"/>
+		<context:component-scan base-package="com.virtusa.entity"/>
+		<context:component-scan base-package="com.virtusa.managercontroller"/>
+		<context:component-scan base-package="com.virtusa.managerdao"/>
+		<context:component-scan base-package="com.virtusa.managermodel"/>
+		<context:component-scan base-package="com.virtusa.managerservice"/>
+		
+		<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver ">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+      </bean>
+      
+      <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="ds">
+      	<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+      	<property name="url" value="jdbc:mysql://localhost:3306/tariffmanager"/>
+      	<property name="username" value="root"/>
+      	<property name="password" value="1234" />
+      </bean>
+      <bean  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" 
+      				name="localSessionFactoryBean">
+      				
+      				<property name="dataSource" ref="ds"></property>
+      				<property name="hibernateProperties">
+      						<props>
+      							<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+      							<prop key="hibernate.show_sql">true</prop>
+      							<prop key="hibernate.hbm2ddl.auto">update</prop>
+      						</props>
+      				</property>
+      				<property name="annotatedClasses">
+      					<list>
+      						<value>com.virtusa.entity.User</value>
+      						<value>com.virtusa.entity.Expense</value>
+      					</list>
+      				</property>
+            </bean>
+      
+      <bean class="org.springframework.orm.hibernate5.HibernateTemplate" name="hibernateTemplate">
+      <property name="sessionFactory" ref="localSessionFactoryBean"></property>
+      </bean>
+      
+     <bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" name="transactionManager">
+      	<property name="sessionFactory" ref="localSessionFactoryBean"></property>
+      </bean>
+      
+        <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value="nagasainaidu678@gmail.com"/>
+        <property name="password" value="Nagasai@678"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
+      
+      <util:properties id="professionList"  location="/WEB-INF/roleList.properties"></util:properties>
+      
+</beans>
