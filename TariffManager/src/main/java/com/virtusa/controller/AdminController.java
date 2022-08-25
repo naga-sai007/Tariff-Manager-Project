@@ -117,4 +117,6 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 	
+	public void commitmethod() {}
+	
 }
