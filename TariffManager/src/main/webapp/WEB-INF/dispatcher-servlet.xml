@@ -21,16 +21,16 @@
 <tx:annotation-driven/>
 	<context:annotation-config></context:annotation-config>
 	<mvc:annotation-driven ></mvc:annotation-driven>
-	<context:component-scan base-package="com.virtusa"/>
-	<context:component-scan base-package="com.virtusa.controller"/>
-		<context:component-scan base-package="com.virtusa.dao"/>
-		<context:component-scan base-package="com.virtusa.model"/>
-		<context:component-scan base-package="com.virtusa.service"/>
-		<context:component-scan base-package="com.virtusa.entity"/>
-		<context:component-scan base-package="com.virtusa.managercontroller"/>
-		<context:component-scan base-package="com.virtusa.managerdao"/>
-		<context:component-scan base-package="com.virtusa.managermodel"/>
-		<context:component-scan base-package="com.virtusa.managerservice"/>
+	<context:component-scan base-package="com.nagasai"/>
+	<context:component-scan base-package="com.nagasai.controller"/>
+		<context:component-scan base-package="com.nagasai.dao"/>
+		<context:component-scan base-package="com.nagasai.model"/>
+		<context:component-scan base-package="com.nagasai.service"/>
+		<context:component-scan base-package="com.nagasai.entity"/>
+		<context:component-scan base-package="com.nagasai.managercontroller"/>
+		<context:component-scan base-package="com.nagasai.managerdao"/>
+		<context:component-scan base-package="com.nagasai.managermodel"/>
+		<context:component-scan base-package="com.nagasai.managerservice"/>
 		
 		<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver ">
@@ -57,8 +57,8 @@
       				</property>
       				<property name="annotatedClasses">
       					<list>
-      						<value>com.virtusa.entity.User</value>
-      						<value>com.virtusa.entity.Expense</value>
+      						<value>com.nagasai.entity.User</value>
+      						<value>com.nagasai.entity.Expense</value>
       					</list>
       				</property>
             </bean>

@@ -33,7 +33,7 @@
             delete-cookies="JSESSIONID" invalidate-session="true" />
         
     </http>
-    <beans:bean id="customHandler" class="com.virtusa.controller.CustomAuthenticationSuccessHandler"/>
+    <beans:bean id="customHandler" class="com.nagasai.controller.CustomAuthenticationSuccessHandler"/>
  
     <authentication-manager>   
         <authentication-provider>
